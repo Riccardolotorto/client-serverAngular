@@ -11,7 +11,7 @@ export class FooComponent {
   data !: Object;
   loading !: boolean;
   o !: Observable<Object>;
-  constructor(public http: HttpClient) {}  //come se creasse una variabile prima (http : HttpClient all'interno della classe)
+  constructor(public http: HttpClient) {}  //come se creasse una variabile prima (http : HttpClient all'interno della classe). In questo modo la crea direttamente pubblica
   makeRequest(): void {
     console.log("here");
     this.loading = true;
@@ -22,5 +22,20 @@ export class FooComponent {
   {
     this.data = new Object(d);
     this.loading = false;
+  }
+  makeCompactPost(): void {
+    this.loading = true;
+    this.http
+      .post('https://jsonplaceholder.typicode.com/posts',
+        JSON.stringify({
+          body: 'bar',
+          title: 'foo',
+          userId: 1
+        })
+      )
+      .subscribe(data => {
+        this.data = data;
+        this.loading = false;
+      });
   }
 }
