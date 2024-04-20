@@ -1,0 +1,8 @@
+<button type="button" (click)="showData()">Visualizza dati</button>
+<hr>
+<div *ngFor = "let a of data">
+  <div *ngIf = "(mostra)">
+    <h3>id: {{a.id}} / {{a.title}}</h3>
+    <p>{{a.body}}</p>
+  </div>
+</div>
