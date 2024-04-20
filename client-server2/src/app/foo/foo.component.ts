@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Foo } from './foo.model';
 
 @Component({
   selector: 'app-foo',
@@ -12,6 +13,8 @@ export class FooComponent implements OnInit{
   o !: Observable<any>;
   loading !: boolean;
   obs !: Observable<any>;
+  fooData !: Foo[];
+  oFoo !: Observable<Foo[]>;   //utilizzo una variabile observable che però ha un dato specifico, in questo caso oggetto della classe Foo
   constructor(private http: HttpClient) {}
   makeRequest(): void {
     this.o = this.http.get('https://jsonplaceholder.typicode.com/posts/1');
@@ -31,6 +34,17 @@ export class FooComponent implements OnInit{
     this.data = d;
     this.loading = false;
   }
+  makeTypedRequest() : void {
+    //oFoo : Observable<Foo[]>; va dichiarato tra gli attributi della classe
+    this.oFoo = this.http.get<Foo[]>('https://jsonplaceholder.typicode.com/posts');
+    this.loading = true;
+    this.oFoo.subscribe(this.getDataTyped);
+  }
+  getDataTyped = (dd: Foo[]) => {
+    this.fooData = dd;
+    this.loading = false
+  }
+
   ngOnInit(): void {
     
   }

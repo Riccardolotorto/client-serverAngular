@@ -5,3 +5,15 @@
 <pre>{{data | json}}</pre>   <!--visualizzo i dati in formato json-->
 <br>
 <button type="button" (click)="makeRequestPost()">Make Post</button>
+<br>
+<hr>
+<button type="button" (click)="makeTypedRequest()">Make typed request</button>
+<!--Uso un ciclo for per scandire tutta la lista di articoli-->
+<div *ngFor="let art of fooData">
+   <h3>{{art.title}}</h3>
+   <b>post {{art.id}} di utente #: {{art.userId}}</b>
+   <div>
+       {{art.body}}
+   </div>
+   <hr>
+</div>
