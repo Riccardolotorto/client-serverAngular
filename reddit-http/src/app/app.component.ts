@@ -13,7 +13,6 @@ export class AppComponent implements OnInit{
   data !: Foo[];
   obs !: Observable<Foo[]>;
   mostra: boolean = false;
-  articles: Foo[] = [];
   constructor(private http: HttpClient) {
     this.obs = this.http.get<Foo[]>('https://jsonplaceholder.typicode.com/posts');
     this.obs.subscribe(this.getData);
