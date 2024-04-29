@@ -1,0 +1,13 @@
+<h1>HTTP</h1><br>
+<button type="button" (click) = "makeRequest()">Fai la richiesta</button>
+<br>
+<pre>{{data | json}}</pre><br>
+<button type="button" (click) = "makeRequestPost()">Post</button>
+<br>
+
+    <h1></h1>
+    <div>
+        <p *ngIf="dataPosted">id: {{dataPosted.id}}
+        </p>
+    </div>
+
